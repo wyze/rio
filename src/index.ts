@@ -3,6 +3,7 @@ import { Result } from 'meow'
 import builtins = require('builtins')
 import bucklescript from 'rollup-plugin-bucklescript'
 import commonjs from 'rollup-plugin-commonjs'
+import json from 'rollup-plugin-json'
 import resolve from 'rollup-plugin-node-resolve'
 import sucrase from 'rollup-plugin-sucrase'
 
@@ -29,13 +30,14 @@ const options: RollupFileOptions = {
 const build = async (input: string, flags: Result['flags']) => {
   const { format, output: file } = flags
   const plugins = [
+    json(),
     maybeAddScript(input),
     maybeAddReason(input),
     commonjs({
       include: 'node_modules/**',
     }),
     resolve({
-      extensions: ['.mjs', '.js', '.ts'],
+      extensions: ['.mjs', '.js', '.json', '.ts'],
     }),
   ].filter(Boolean)
 
