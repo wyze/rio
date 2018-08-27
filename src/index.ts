@@ -28,7 +28,7 @@ const options: RollupFileOptions = {
 }
 
 const build = async (input: string, flags: Result['flags']) => {
-  const { format, output: file } = flags
+  const { banner, format, output: file } = flags
   const plugins = [
     json(),
     maybeAddScript(input),
@@ -43,7 +43,7 @@ const build = async (input: string, flags: Result['flags']) => {
 
   const bundle = await rollup({ ...options, input, plugins })
 
-  await bundle.write({ file, format })
+  await bundle.write({ banner, file, format })
 }
 
 export default build

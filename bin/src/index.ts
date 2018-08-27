@@ -7,15 +7,21 @@ const cli = meow(
     $ rio <input>
 
   Options
+    --banner, -b   Add banner to top of output file
     --format, -f   Output file format (esm, umd, etc.)
     --output, -o   Output file
 
   Examples
     $ rio -o out.js in.ts
     $ rio -o out.js -f esm in.ts
+    $ rio -o out.js -b '#!/usr/bin/env node' in.ts
 `,
   {
     flags: {
+      banner: {
+        alias: 'b',
+        type: 'string',
+      },
       format: {
         alias: 'f',
         type: 'string',
