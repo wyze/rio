@@ -1,0 +1,71 @@
+{
+  "name": "@wyze/rio",
+  "version": "0.0.0",
+  "description": "A utility to compile Node modules.",
+  "license": "MIT",
+  "repository": "wyze/rio",
+  "author": {
+    "name": "Neil Kistner",
+    "email": "neil.kistner@gmail.com",
+    "url": "neilkistner.com"
+  },
+  "bin": {
+    "rio": "bin/index.js"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "clean": "rimraf bin/*.js",
+    "postbuild": "shx chmod a+x bin/index.js",
+    "prebuild": "yarn clean",
+    "prettier": "prettier --write \"{bin,src}/**/*.ts\" \"rollup.config.js\"",
+    "test": "jest",
+    "version": "write-changelog"
+  },
+  "files": [
+    "bin/index.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "builtins": "^2.0.0",
+    "meow": "^5.0.0",
+    "rollup": "^0.65.0",
+    "rollup-plugin-bucklescript": "^0.7.0",
+    "rollup-plugin-commonjs": "^9.1.6",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-sucrase": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.1",
+    "@types/meow": "^4.0.1",
+    "jest": "^23.5.0",
+    "prettier": "^1.14.2",
+    "rimraf": "^2.6.2",
+    "shx": "^0.3.2",
+    "ts-jest": "^23.1.4",
+    "typescript": "^3.0.1",
+    "write-changelog": "^1.1.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/src/*.ts"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "testEnvironment": "node",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    }
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  }
+}
