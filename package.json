@@ -18,6 +18,7 @@
     "postbuild": "shx chmod a+x bin/index.js",
     "prebuild": "yarn clean",
     "prettier": "prettier --write \"{bin,src}/**/*.ts\" \"rollup.config.js\"",
+    "preversion": "yarn build",
     "test": "jest",
     "version": "write-changelog"
   },
