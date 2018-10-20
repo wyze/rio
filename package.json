@@ -13,7 +13,7 @@
     "rio": "bin/index.js"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c rollup.config.ts",
     "clean": "rimraf bin/*.js",
     "postbuild": "shx chmod a+x bin/index.js",
     "prebuild": "yarn clean",
