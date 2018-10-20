@@ -22,13 +22,12 @@ const maybeAddReason = (input: string) =>
   whenMatch(/\.(ml|re)$/.test(input), bucklescript)
 
 const options: RollupFileOptions = {
-  external: builtins(),
   inlineDynamicImports: false,
   input: '', // Will be overwritten in build function
 }
 
 const build = async (input: string, flags: Result['flags']) => {
-  const { banner, format, output: file } = flags
+  const { banner, externals, format, output: file } = flags
   const plugins = [
     json(),
     maybeAddScript(input),
@@ -40,8 +39,11 @@ const build = async (input: string, flags: Result['flags']) => {
       extensions: ['.mjs', '.js', '.json', '.ts'],
     }),
   ].filter(Boolean)
+  const external = builtins()
+    .concat(externals !== undefined ? externals.split(',') : undefined)
+    .filter(Boolean)
 
-  const bundle = await rollup({ ...options, input, plugins })
+  const bundle = await rollup({ ...options, external, input, plugins })
 
   await bundle.write({ banner, file, format })
 }
