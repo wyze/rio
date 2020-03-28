@@ -7,7 +7,7 @@
   "author": {
     "name": "Neil Kistner",
     "email": "neil.kistner@gmail.com",
-    "url": "neilkistner.com"
+    "url": "https://neilkistner.com"
   },
   "bin": {
     "rio": "bin/index.js"
@@ -17,7 +17,7 @@
     "clean": "rimraf bin/*.js",
     "postbuild": "shx chmod a+x bin/index.js",
     "prebuild": "yarn clean",
-    "prettier": "prettier --write \"{bin,src}/**/*.ts\" \"rollup.config.js\"",
+    "prettier": "prettier --write \"{bin,src}/**/*.ts\" \"rollup.config.ts\"",
     "preversion": "yarn build",
     "test": "jest",
     "version": "write-changelog"
