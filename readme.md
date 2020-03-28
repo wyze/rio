@@ -1,8 +1,4 @@
-# @wyze/rio
-
-[![Build Status][travis-image]][travis-url]
-[![npm][npm-image]][npm-url]
-[![Codecov.io][codecov-image]][codecov-url]
+# @wyze/rio &middot; [![Build Status][actions-image]][actions-url] [![npm][npm-image]][npm-url] [![Codecov.io][codecov-image]][codecov-url]
 
 > A utility to compile Node modules.
 
@@ -55,8 +51,8 @@ $ rio --help
 
 MIT © [Neil Kistner](//neilkistner.com)
 
-[travis-image]: https://img.shields.io/travis/wyze/rio.svg?style=flat-square
-[travis-url]: https://travis-ci.org/wyze/rio
+[actions-image]: https://img.shields.io/github/workflow/status/wyze/rio/CI.svg?style=flat-square
+[actions-url]: https://github.com/wyze/rio/actions
 
 [npm-image]: https://img.shields.io/npm/v/@wyze/rio.svg?style=flat-square
 [npm-url]: https://npmjs.com/package/@wyze/rio
