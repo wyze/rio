@@ -1,6 +1,6 @@
 import pkg from './package.json'
-import resolve from 'rollup-plugin-node-resolve'
-import sucrase from 'rollup-plugin-sucrase'
+import resolve from '@rollup/plugin-node-resolve'
+import sucrase from '@rollup/plugin-sucrase'
 
 export default {
   external: Object.keys(pkg.dependencies || {}),

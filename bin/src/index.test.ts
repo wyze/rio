@@ -23,13 +23,8 @@ test('it calls build with proper arguments', () => {
 
   require('.')
 
-  expect(m).toHaveBeenCalledWith(
-    '/in.ts',
-    expect.objectContaining({
-      f: 'cjs',
-      format: 'cjs',
-      o: 'out.js',
-      output: 'out.js',
-    })
-  )
+  expect(m).toHaveBeenCalledWith('/in.ts', {
+    format: 'cjs',
+    output: 'out.js',
+  })
 })

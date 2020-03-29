@@ -5,6 +5,9 @@
       "es2015"
     ],
     "module": "commonjs",
+    "noEmit": true,
     "resolveJsonModule": true
-  }
+  },
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts"]
 }

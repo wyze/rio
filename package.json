@@ -17,12 +17,13 @@
     "clean": "rimraf bin/*.js",
     "lint": "eslint \"{bin,src}/**/*.ts\" \"rollup.config.ts\"",
     "postbuild": "shx chmod a+x bin/index.js",
+    "postversion": "github-release",
     "prebuild": "yarn clean",
     "prettier": "prettier --write \"{bin,src}/**/*.ts\" \"rollup.config.ts\"",
     "preversion": "run-p lint type-check test build",
     "test": "jest",
-    "type-check": "tsc --noEmit",
-    "version": "write-changelog"
+    "type-check": "tsc",
+    "version": "changelog"
   },
   "files": [
     "bin/index.js"
@@ -31,14 +32,14 @@
     "access": "public"
   },
   "dependencies": {
-    "builtins": "^2.0.0",
-    "meow": "^5.0.0",
-    "rollup": "^0.66.6",
-    "rollup-plugin-bucklescript": "^0.7.0",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-json": "^3.1.0",
-    "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-sucrase": "^2.0.0"
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-json": "^4.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@rollup/plugin-sucrase": "^3.0.0",
+    "builtins": "^3.0.1",
+    "meow": "^6.1.0",
+    "rollup": "^2.2.0",
+    "rollup-plugin-bucklescript": "^0.7.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.0",
@@ -48,6 +49,8 @@
     "@types/node": "^13.9.5",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
+    "@wyze/changelog": "^1.0.0",
+    "@wyze/github-release": "^1.1.1",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-jest": "^23.8.2",
@@ -55,11 +58,10 @@
     "eslint-plugin-wyze": "^3.4.0",
     "jest": "^25.2.3",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.14.3",
-    "rimraf": "^2.6.2",
+    "prettier": "^2.0.2",
+    "rimraf": "^3.0.2",
     "shx": "^0.3.2",
-    "typescript": "^3.8.3",
-    "write-changelog": "^1.2.0"
+    "typescript": "^3.8.3"
   },
   "babel": {
     "presets": [
@@ -78,9 +80,7 @@
     "testEnvironment": "node"
   },
   "prettier": {
-    "arrowParens": "always",
     "semi": false,
-    "singleQuote": true,
-    "trailingComma": "es5"
+    "singleQuote": true
   }
 }
