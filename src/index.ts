@@ -1,13 +1,13 @@
-import { RollupFileOptions, rollup } from 'rollup'
 import { Result } from 'meow'
-import builtins = require('builtins')
+import { RollupFileOptions, rollup } from 'rollup'
 import bucklescript from 'rollup-plugin-bucklescript'
+import builtins from 'builtins'
 import commonjs from 'rollup-plugin-commonjs'
 import json from 'rollup-plugin-json'
 import resolve from 'rollup-plugin-node-resolve'
 import sucrase from 'rollup-plugin-sucrase'
 
-const whenMatch = (match: boolean, plugin: () => any) =>
+const whenMatch = (match: boolean, plugin: () => unknown) =>
   match ? plugin() : undefined
 
 const maybeAddScript = (input: string) =>

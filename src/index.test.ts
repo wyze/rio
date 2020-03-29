@@ -1,15 +1,12 @@
-import build from '..'
-
-jest.mock('rollup', () => ({
-  rollup: jest.fn(() =>
-    Promise.resolve({
-      write: jest.fn(),
-    })
-  ),
-}))
+import * as rollupModule from 'rollup'
+import build from '.'
 
 test('it calls rollup.build and outputs a file', async () => {
-  const { rollup } = require('rollup')
+  const rollup = jest.spyOn(rollupModule, 'rollup').mockImplementation(() => {
+    const actual = require.requireActual('rollup').rollup
+
+    return Promise.resolve({ ...actual, write: jest.fn() })
+  })
 
   await build('in.ts', { format: 'cjs', output: 'out.js' })
 

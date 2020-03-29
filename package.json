@@ -15,11 +15,13 @@
   "scripts": {
     "build": "rollup -c rollup.config.ts",
     "clean": "rimraf bin/*.js",
+    "lint": "eslint \"{bin,src}/**/*.ts\" \"rollup.config.ts\"",
     "postbuild": "shx chmod a+x bin/index.js",
     "prebuild": "yarn clean",
     "prettier": "prettier --write \"{bin,src}/**/*.ts\" \"rollup.config.ts\"",
-    "preversion": "yarn build",
+    "preversion": "run-p lint type-check test build",
     "test": "jest",
+    "type-check": "tsc --noEmit",
     "version": "write-changelog"
   },
   "files": [
@@ -39,35 +41,41 @@
     "rollup-plugin-sucrase": "^2.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.5",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-typescript": "^7.9.0",
+    "@types/jest": "^25.1.4",
     "@types/meow": "^5.0.0",
-    "jest": "^23.6.0",
+    "@types/node": "^13.9.5",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-wyze": "^3.4.0",
+    "jest": "^25.2.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.14.3",
     "rimraf": "^2.6.2",
     "shx": "^0.3.2",
-    "ts-jest": "^23.10.4",
-    "typescript": "^3.1.3",
+    "typescript": "^3.8.3",
     "write-changelog": "^1.2.0"
   },
+  "babel": {
+    "presets": [
+      [
+        "@babel/env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
+      "@babel/typescript"
+    ]
+  },
   "jest": {
-    "collectCoverageFrom": [
-      "**/src/*.ts"
-    ],
-    "globals": {
-      "ts-jest": {
-        "diagnostics": false
-      }
-    },
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "testEnvironment": "node",
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    }
+    "testEnvironment": "node"
   },
   "prettier": {
     "arrowParens": "always",
