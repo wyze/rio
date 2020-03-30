@@ -1,5 +1,9 @@
 ## Change Log
 
+### [v1.4.0](https://github.com/wyze/rio/releases/tag/v1.4.0) (2020-03-30)
+
+* Add binary flag ([@wyze](https://github.com/wyze) in [f295c17](https://github.com/wyze/rio/commit/f295c17))
+
 ### [v1.3.0](https://github.com/wyze/rio/releases/tag/v1.3.0) (2020-03-29)
 
 * Fix CI ([@wyze](https://github.com/wyze) in [30b5c79](https://github.com/wyze/rio/commit/30b5c79))

@@ -1,6 +1,6 @@
 {
   "name": "@wyze/rio",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A utility to compile Node modules.",
   "license": "MIT",
   "repository": "wyze/rio",
