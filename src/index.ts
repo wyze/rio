@@ -3,11 +3,13 @@ import bucklescript from 'rollup-plugin-bucklescript'
 import builtins from 'builtins'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
+import readPkg from 'read-pkg'
 import resolve from '@rollup/plugin-node-resolve'
 import sucrase from '@rollup/plugin-sucrase'
 
 type Flags = {
   banner?: string
+  binary?: boolean
   externals?: string
   format: string
   output: string
@@ -33,7 +35,9 @@ const options: InputOptions = {
 }
 
 const build = async (input: string, flags: Flags) => {
-  const { banner, externals, output: file } = flags
+  const { binary, externals } = flags
+  const banner = flags.banner ?? (binary ? '#!/usr/bin/env node' : undefined)
+  const file = flags.output ?? (binary ? 'bin/index.js' : undefined)
   const format = flags.format as ModuleFormat
   const plugins = [
     json(),
@@ -47,6 +51,9 @@ const build = async (input: string, flags: Flags) => {
     }),
   ].filter(Boolean)
   const external = builtins()
+    .concat(
+      binary ? Object.keys((await readPkg()).dependencies || {}) : undefined
+    )
     .concat(externals !== undefined ? externals.split(',') : undefined)
     .filter(Boolean)
 

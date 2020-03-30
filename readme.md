@@ -22,10 +22,11 @@ $ npm install --save-dev @wyze/rio
 $ rio --help
 
   Usage
-    $ rio <input>
+    $ rio [options] <input>
 
   Options
     --banner,    -b   Add banner to top of output file
+    --binary          Pass good defaults for binary files
     --externals, -e   Add external files that shouldn't be bundled
     --format,    -f   Output file format (esm, umd, etc.)
     --output,    -o   Output file
@@ -35,7 +36,16 @@ $ rio --help
     $ rio -o out.js -f esm in.ts
     $ rio -o out.js -e chalk,debug in.ts
     $ rio -o out.js -b '#!/usr/bin/env node' in.ts
+    $ rio --binary in.ts
 ```
+
+### --binary Flag
+
+This will make the following changes:
+
+- Automatically include all package dependencies as externals
+- Set `banner` option to: `#!/usr/bin/env node`
+- Set `output` option to: `bin/index.js`
 
 ## Change Log
 

@@ -38,6 +38,7 @@
     "@rollup/plugin-sucrase": "^3.0.0",
     "builtins": "^3.0.1",
     "meow": "^6.1.0",
+    "read-pkg": "^5.2.0",
     "rollup": "^2.2.0",
     "rollup-plugin-bucklescript": "^0.7.0"
   },
